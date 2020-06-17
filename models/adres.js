@@ -1,11 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const adres = sequelize.define('adres', {
-    klantId: DataTypes.INTEGER,
-    straatnaam: DataTypes.STRING,
-    huisnummer: DataTypes.INTEGER,
-    postcode: DataTypes.STRING,
-    woonplaats: DataTypes.STRING
+    klantId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    straatnaam: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    huisnummer: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    postcode: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    woonplaats: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
   }, {});
   adres.associate = function(models) {
     adres.belongsTo(models.klant)

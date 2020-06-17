@@ -1,10 +1,23 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const klant = sequelize.define('klant', {
-    voornaam: DataTypes.STRING,
-    achternaam: DataTypes.STRING,
-    email: DataTypes.STRING,
-    wachtwoord: DataTypes.STRING
+    voornaam: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    voornaam: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    voornaam: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    wachtwoord: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {});
   klant.associate = function(models) {
     klant.hasOne(models.adres)
