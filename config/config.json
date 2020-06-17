@@ -1,6 +1,9 @@
 {
   "development": {
-    "url": "kandula.db.elephantsql.com",
+    "username": "postgres",
+    "password": "secret",
+    "database": "suusje-pluusje",
+    "host": "localhost",
     "dialect": "postgres",
     "operatorsAliases": "0"
   },
@@ -13,10 +16,10 @@
     "operatorsAliases": "0"
   },
   "production": {
-    "username": "lkovgisi",
-    "password": "dhzT1HJMVhSO9vj58pYelmQ1UfCaNecp",
-    "database": "lkovgisi",
-    "host": "kandula.db.elephantsql.com",
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
     "dialect": "postgres",
     "operatorsAliases": "0"
   }
