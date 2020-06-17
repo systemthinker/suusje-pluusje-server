@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     woonplaats: DataTypes.STRING
   }, {});
   adres.associate = function(models) {
-    // associations can be defined here
+    adres.belongsTo(models.klant)
+    adres.belongsTo(models.bestelling)
   };
   return adres;
 };

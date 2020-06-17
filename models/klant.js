@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
     wachtwoord: DataTypes.STRING
   }, {});
   klant.associate = function(models) {
-    // associations can be defined here
+    klant.hasOne(models.adres)
+    klant.hasMany(models.bestelling)
+    klant.hasOne(models.winkelwagen)
   };
   return klant;
 };

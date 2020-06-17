@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     winkelwagenId: DataTypes.INTEGER
   }, {});
   winkelwagen.associate = function(models) {
-    // associations can be defined here
+    winkelwagen.belongsTo(models.klant)
+    winkelwagen.belongsToMany(models.product, { through: 'winkelwagenproduct' });
   };
   return winkelwagen;
 };

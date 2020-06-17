@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     woonplaats: DataTypes.STRING
   }, {});
   bestelling.associate = function(models) {
-    // associations can be defined here
+    bestelling.belongsTo(models.klant)
+    bestelling.hasOne(models.adres)
+    bestelling.belongsToMany(models.product, { through: 'bestellingproduct' });
   };
   return bestelling;
 };
