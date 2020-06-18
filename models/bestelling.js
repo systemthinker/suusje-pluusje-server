@@ -11,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: "CASCADE",
       onDelete: "CASCADE"
     },
+
+    productPrijs: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    hoeveelheid: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
  
   }, {});
   bestelling.associate = function(models) {

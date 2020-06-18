@@ -20,6 +20,24 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING
       },
+      // winkelwagenProductId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: "winkelwagenProducts",
+      //     key: "id"
+      //   },
+      //   onUpdate: "CASCADE",
+      //   onDelete: "CASCADE"
+      // },
+      // bestellingProductId: {
+      //   type: Sequelize.INTEGER,
+      //   references: {
+      //     model: "bestellingProducts",
+      //     key: "id"
+      //   },
+      //   onUpdate: "CASCADE",
+      //   onDelete: "CASCADE"
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

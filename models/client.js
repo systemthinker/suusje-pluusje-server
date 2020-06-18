@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const klant = sequelize.define('klant', {
-    voornaam: {
+  const client = sequelize.define('client', {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    achternaam: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -14,16 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },
-    wachtwoord: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false
     }
   }, {});
-  klant.associate = function(models) {
-    klant.hasOne(models.adres)
-    klant.hasOne(models.winkelwagen)
-    klant.hasMany(models.bestelling)
+  client.associate = function(models) {
+    client.hasOne(models.adres)
+    client.hasOne(models.winkelwagen)
+    client.hasMany(models.bestelling)
     
   };
-  return klant;
+  return client;
 };

@@ -9,24 +9,26 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       bestellingId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "bestellings",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       },
       productId: {
-        type: Sequelize.INTEGER
-      },
-      productNaam: {
-        type: Sequelize.STRING
-      },
-      productPrijs: {
-        type: Sequelize.INTEGER
-      },
-      hoeveelheid: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        type: Sequelize.DATE
+        references: {
+          model: "products",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       },
+      
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
