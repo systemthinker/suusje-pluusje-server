@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     winkelwagenId: DataTypes.INTEGER
   }, {});
   winkelwagenProduct.associate = function(models) {
-    // associations can be defined here
+    winkelwagenProduct.belongsTo(models.product)
+    winkelwagenProduct.belongsTo(models.winkelwagen)
   };
   return winkelwagenProduct;
 };

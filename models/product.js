@@ -19,8 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   product.associate = function(models) {
-    product.belongsToMany(models.winkelwagen, { through: 'winkelwagenproduct' });
-    product.belongsToMany(models.bestelling, { through: 'bestellingproduct'});
+    product.belongsToMany(models.winkelwagen, { through: 'winkelwagenProduct',
+                                                foreignKey: 'winkelwagenProductId' });
+    product.belongsToMany(models.bestelling, { through: 'bestellingProduct',
+                                                foreignKey: 'bestellingProductId'});
+    
+   
   };
   return product;
 };

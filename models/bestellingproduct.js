@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   bestellingProduct.associate = function(models) {
-    // associations can be defined here
+    bestellingProduct.belongsTo(models.bestelling)
+    bestellingProduct.belongsTo(models.product)
   };
   return bestellingProduct;
 };

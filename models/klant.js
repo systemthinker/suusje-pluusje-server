@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    voornaam: {
+    achternaam: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    voornaam: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -21,8 +21,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   klant.associate = function(models) {
     klant.hasOne(models.adres)
-    klant.hasMany(models.bestelling)
     klant.hasOne(models.winkelwagen)
+    klant.hasMany(models.bestelling)
+    
   };
   return klant;
 };

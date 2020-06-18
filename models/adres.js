@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   adres.associate = function(models) {
-    adres.belongsTo(models.klant)
-    adres.belongsTo(models.bestelling)
+    adres.belongsTo(models.klant, { foreignKey: 'klantId'})
+    
   };
   return adres;
 };

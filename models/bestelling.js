@@ -31,9 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   bestelling.associate = function(models) {
-    bestelling.belongsTo(models.klant)
-    bestelling.hasOne(models.adres)
-    bestelling.belongsToMany(models.product, { through: 'bestellingproduct' });
+    bestelling.belongsTo(models.klant, { foreignKey: 'klantId',})
+    bestelling.hasMany(models.product, { trough: 'bestellingProduct',
+                                         foreignKey: 'bestellingProductId'})
+    
   };
   return bestelling;
 };
