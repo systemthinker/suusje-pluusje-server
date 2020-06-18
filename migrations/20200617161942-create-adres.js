@@ -9,18 +9,29 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       klantId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "klants",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE"
       },
       straatnaam: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       huisnummer: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       postcode: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       woonplaats: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

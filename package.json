@@ -10,7 +10,8 @@
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
     "resetDB": "npx sequelize-cli db:migrate:undo:all && npm run initdev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+   
   },
   "keywords": [
     "template",
@@ -28,6 +29,7 @@
     "morgan": "^1.9.1",
     "pg": "^7.18.2",
     "sequelize": "^5.21.5",
+    "sequelize-auto-migrations": "^1.0.3",
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
