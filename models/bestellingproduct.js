@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const bestellingProduct = sequelize.define('bestellingProduct', {
-    bestellingId: {
+  const orderProduct = sequelize.define('orderProduct', {
+    orderId: {
       type: DataTypes.INTEGER,
       allowNull: false,
         references: {
-        model: "bestellings",
+        model: "orders",
         key: "id"
       },
       onUpdate: "CASCADE",
@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
    
     
   }, {});
-  bestellingProduct.associate = function(models) {
-    bestellingProduct.belongsTo(models.bestelling)
-    bestellingProduct.belongsTo(models.product)
+  orderProduct.associate = function(models) {
+    orderProduct.belongsTo(models.order)
+    orderProduct.belongsTo(models.product)
   };
-  return bestellingProduct;
+  return orderProduct;
 };

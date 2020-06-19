@@ -8,36 +8,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      naam: {
+      name: {
         type: Sequelize.STRING
       },
-      omschrijving: {
+      description: {
         type: Sequelize.TEXT
       },
-      prijs: {
+      price: {
         type: Sequelize.INTEGER
       },
       imageUrl: {
         type: Sequelize.STRING
       },
-      // winkelwagenProductId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: "winkelwagenProducts",
-      //     key: "id"
-      //   },
-      //   onUpdate: "CASCADE",
-      //   onDelete: "CASCADE"
-      // },
-      // bestellingProductId: {
-      //   type: Sequelize.INTEGER,
-      //   references: {
-      //     model: "bestellingProducts",
-      //     key: "id"
-      //   },
-      //   onUpdate: "CASCADE",
-      //   onDelete: "CASCADE"
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

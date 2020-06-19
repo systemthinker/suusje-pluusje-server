@@ -1,15 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const product = sequelize.define('product', {
-    naam: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    omschrijving: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    prijs: {
+    price: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   product.associate = function(models) {
-    product.belongsToMany(models.winkelwagen, { through: 'winkelwagenProduct',
-                                                foreignKey: 'winkelwagenProductId' });
-    product.belongsToMany(models.bestelling, { through: 'bestellingProduct',
-                                                foreignKey: 'bestellingProductId'});
+    product.belongsToMany(models.basket, { through: 'basketProduct',
+                                                foreignKey: 'basketProductId' });
+    product.belongsToMany(models.order, { through: 'orderProduct',
+                                                foreignKey: 'orderProductId'});
     
    
   };

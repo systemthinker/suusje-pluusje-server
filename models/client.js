@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   client.associate = function(models) {
     client.hasOne(models.adres)
-    client.hasOne(models.winkelwagen)
-    client.hasMany(models.bestelling)
+    client.hasOne(models.basket)
+    client.hasMany(models.order)
     
   };
   return client;

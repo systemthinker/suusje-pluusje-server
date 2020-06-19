@@ -1,33 +1,23 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('winkelwagens', {
+    return queryInterface.createTable('baskets', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      klantId: {
+      clientId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "klants",
+          model: "clients",
           key: "id"
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE"
       },
-      // winkelwagenProductId: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false,
-      //   references: {
-      //     model: "winkelwagenProducts",
-      //     key: "id"
-      //   },
-      //   onUpdate: "CASCADE",
-      //   onDelete: "CASCADE"
-      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -39,6 +29,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('winkelwagens');
+    return queryInterface.dropTable('baskets');
   }
 };

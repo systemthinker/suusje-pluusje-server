@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const winkelwagenProduct = sequelize.define('winkelwagenProduct', {
+  const basketProduct = sequelize.define('basketProduct', {
     productId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -12,20 +12,20 @@ module.exports = (sequelize, DataTypes) => {
     onDelete: "CASCADE"
   },
       
-    winkelwagenId: {
+    basketId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-      model: "winkelwagens",
+      model: "baskets",
       key: "id"
     },
     onUpdate: "CASCADE",
     onDelete: "CASCADE"
   },
   }, {});
-  winkelwagenProduct.associate = function(models) {
-    winkelwagenProduct.belongsTo(models.product)
-    winkelwagenProduct.belongsTo(models.winkelwagen)
+  basketProduct.associate = function(models) {
+    basketProduct.belongsTo(models.product)
+    basketProduct.belongsTo(models.basket)
   };
-  return winkelwagenProduct;
+  return basketProduct;
 };

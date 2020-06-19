@@ -8,33 +8,33 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      klantId: {
+      clientId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "klants",
+          model: "clients",
           key: "id"
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE"
       },
-      straatnaam: {
+      streetName: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      huisnummer: {
+      houseNumber: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      huisnummerToevoeging: {
+      houseNumberAddition: {
         
         type: Sequelize.STRING
       },
-      postcode: {
+      postalCode: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      woonplaats: {
+      city: {
         allowNull: false,
         type: Sequelize.STRING
       },

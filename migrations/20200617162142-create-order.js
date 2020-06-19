@@ -1,40 +1,28 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('bestellings', {
+    return queryInterface.createTable('orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      klantId: {
+      clientId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "klants",
+          model: "clients",
           key: "id"
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE"
       },
-
-      // bestellingProductId: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false,
-      //   references: {
-      //     model: "bestellingProducts",
-      //     key: "id"
-      //   },
-      //   onUpdate: "CASCADE",
-      //   onDelete: "CASCADE"
-      // },
-     
-      productPrijs: {
+      productPrice: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      hoeveelheid: {
+      quantity: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
@@ -49,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('bestellings');
+    return queryInterface.dropTable('orders');
   }
 };
