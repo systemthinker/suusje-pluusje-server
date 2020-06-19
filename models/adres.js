@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     houseNumberAddition: {
         
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     postalCode: {
       type: DataTypes.STRING,

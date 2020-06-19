@@ -9,15 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       description: {
         type: Sequelize.TEXT
       },
       price: {
+
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       imageUrl: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
