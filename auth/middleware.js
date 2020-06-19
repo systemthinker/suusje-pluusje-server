@@ -1,4 +1,4 @@
-const User = require("../models").user;
+const Client = require("../models").client;
 const { toData } = require("./jwt");
 
 async function auth(req, res, next) {
@@ -14,13 +14,13 @@ async function auth(req, res, next) {
 
   try {
     const data = toData(auth[1]);
-    const user = await User.findByPk(data.userId);
-    if (!user) {
-      return res.status(404).send({ message: "User does not exist" });
+    const client = await Client.findByPk(data.clientId);
+    if (!client) {
+      return res.status(404).send({ message: "Client does not exist" });
     }
 
-    // add user object to request
-    req.user = user;
+    // add client object to request
+    req.client = client;
     // next handler
     return next();
   } catch (error) {
