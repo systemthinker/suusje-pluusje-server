@@ -5,10 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    basketId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+
   }, {});
   basket.associate = function(models) {
     basket.belongsTo(models.client, { foreignKey: 'clientId'})
