@@ -19,10 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   product.associate = function(models) {
-    product.belongsToMany(models.basket, { through: 'basketProduct',
-                                                foreignKey: 'basketProductId' });
-    product.belongsToMany(models.order, { through: 'orderProduct',
-                                                foreignKey: 'orderProductId'});
+    product.belongsToMany(models.basket, { through: 'basketProducts'});
+    product.belongsToMany(models.order, { through: 'orderProducts'});
     
    
   };

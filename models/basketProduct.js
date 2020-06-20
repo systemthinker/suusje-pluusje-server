@@ -24,8 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   },
   }, {});
   basketProduct.associate = function(models) {
-    basketProduct.belongsTo(models.product)
-    basketProduct.belongsTo(models.basket)
+    
   };
   return basketProduct;
 };

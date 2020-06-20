@@ -26,8 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     
   }, {});
   orderProduct.associate = function(models) {
-    orderProduct.belongsTo(models.order)
-    orderProduct.belongsTo(models.product)
+  
   };
   return orderProduct;
 };

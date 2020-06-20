@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   basket.associate = function(models) {
     basket.belongsTo(models.client, { foreignKey: 'clientId'})
-    basket.belongsToMany(models.product, { through: 'basketProduct',
-                                                foreignKey: 'basketProductId' });
+    basket.belongsToMany(models.product, { through: 'basketProducts'});
    
   };
   return basket;
