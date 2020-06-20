@@ -19,7 +19,7 @@ module.exports = {
         onDelete: "CASCADE"
       },
       productPrice: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
       quantity: {
