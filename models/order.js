@@ -24,8 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   order.associate = function(models) {
     order.belongsTo(models.client, { foreignKey: 'clientId',})
-    order.belongsToMany(models.product, { through: 'orderProduct',
-                                    foreignKey: 'orderProductId'})
+    order.belongsToMany(models.product, { through: 'orderProducts'})
     
   };
   return order;
