@@ -15,7 +15,7 @@ module.exports = {
         },
         {
           name: "test product 2",
-          description: "beste babyNestje",
+          description: "Nestje 60 cm, wafelstof koperrood met zeegroen binnenkant. Ook beschikbaar met bijpassend dekentje en inleggers",
           price: '10,00',
           imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fin04.hostcontrol.com%2Fresources%2F56634549962945%2F93914b59c3.JPEG",
           createdAt: new Date(),

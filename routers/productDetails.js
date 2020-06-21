@@ -10,7 +10,7 @@ router.get('/:id', async(req,res,next)=>{
             res.status(400).send('no product found')
         }
 
-        const product = awaitProducts.findByPk(id)
+        const product = await Products.findByPk(id)
 
         if(!product){
             res.status(400).send('no product found')
