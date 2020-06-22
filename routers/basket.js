@@ -103,16 +103,22 @@ router.delete('/:id', async(req,res,next)=>{
 
 })
 
-router.get('/create', async(req,res,next)=>{
-    const id = req.body.id; 
+router.post('/create', async(req,res,next)=>{
+    let id = req.body.id; 
        
     try{
 
     if(!id){
-        res.status(400).send('please login or make an account first')
-        return
+        try{
+        const clientCreated = await Client.create()
+            console.log('client created?', clientCreated)
+        id = clientCreated.id
+        } catch(e){
+            next(e)
+        }
     }
 
+    console.log('id is ', id);
     const client = await Client.findByPk(id);
 
     if(!client) {
@@ -122,7 +128,7 @@ router.get('/create', async(req,res,next)=>{
 
     let basket = await Baskets.findOne({
         where: {
-            clientId : req.params.id
+            clientId : id
         }
     })
 
