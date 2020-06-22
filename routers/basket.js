@@ -174,4 +174,15 @@ router.delete('/all/:id', async(req,res,next)=>{
 
 })
 
+router.get('/anonymous/create/', async(req,res,next)=>{
+    // creates anonymous basket for client that isnt logged in
+    try{
+        newBasket = await Baskets.create();
+
+        res.status(200).send(newBasket)
+    } catch(e){
+        next(e)
+    }
+})
+
 module.exports = router;

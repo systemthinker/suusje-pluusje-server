@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const basket = sequelize.define('basket', {
     clientId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      
     },
 
   }, {});
