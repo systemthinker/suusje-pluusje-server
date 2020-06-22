@@ -11,7 +11,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          
+          clientId: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

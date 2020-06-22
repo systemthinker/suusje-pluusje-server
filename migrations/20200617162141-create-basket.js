@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       clientId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         
         references: {

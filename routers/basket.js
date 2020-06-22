@@ -103,20 +103,20 @@ router.delete('/:id', async(req,res,next)=>{
 
 })
 
-router.get('/create/:id', async(req,res,next)=>{
-    id = req.params.id; 
+router.get('/create', async(req,res,next)=>{
+    const id = req.body.id; 
        
     try{
 
     if(!id){
-        res.status(400).send('please login first')
+        res.status(400).send('please login or make an account first')
         return
     }
 
     const client = await Client.findByPk(id);
 
     if(!client) {
-        res.status(400).send('no client found')
+        res.status(400).send('no client found with that id')
         return
     }
 

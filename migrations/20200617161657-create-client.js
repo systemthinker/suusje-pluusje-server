@@ -9,20 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        allowNull: false,
+        
         type: Sequelize.STRING
       },
       lastName: {
-        allowNull: false,
+        
         type: Sequelize.STRING
       },
       email: {
-        allowNull: false,
+        
         type: Sequelize.STRING,
         unique: true,
       },
       password: {
-        allowNull: false,
+        
         type: Sequelize.STRING
       },
       createdAt: {
@@ -32,7 +32,14 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      isVerified: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       }
+
+      // add verified column
     });
   },
   down: (queryInterface, Sequelize) => {
