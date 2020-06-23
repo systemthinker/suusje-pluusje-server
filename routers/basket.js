@@ -8,29 +8,55 @@ const BasketProducts = require('../models').basketProduct
 const router = new Router();
 
 router.get('/:id', async(req,res,next)=>{
+    try{
     const id = req.params.id
     const basket = await Baskets.findByPk(id,{
         include: [Products]
     })
    
     res.status(200).send(basket);
+    } catch(e){
+        next(e)
+    }
 
+})
+
+router.get('/client/:id', async(req,res,next)=>{
+    try{
+    const id = req.params.id
+    const basket = await Baskets.findOne({
+        where: {
+        clientId : id,
+        },
+        include: [Products]
+    })
+   
+    res.status(200).send(basket);
+    } catch(e){
+        next(e)
+    }
 })
 
 router.patch('/:id', async(req,res,next)=>{
     // adds item to basket
     try{
     const id = req.params.id
+    // id = clientId
+    const productId = req.body.productId
     if(!id){
-        res.status(400).send('no basket found')
+        res.status(400).send('no client found')
     }
 
-    const basketFound = await Baskets.findByPk(id)
-    console.log("basketFound", basketFound)
+    const basketFound = await Baskets.findOne({
+        where: {
+            clientId : id
+        }
+    })
+    
     if(!basketFound) {
         res.status(400).send('no basket found')
     }
-    const productId = req.body.productId
+    
 
     
     
@@ -45,11 +71,11 @@ router.patch('/:id', async(req,res,next)=>{
     }
 
     const newProductAddedToBasket = await BasketProducts.create({
-        basketId : id,
+        basketId : basketFound.id,
         productId
     })
 
-    const basket = await Baskets.findByPk(id,{
+    const basket = await Baskets.findByPk(basketFound.id,{
         include: [Products]
     })
  
@@ -109,13 +135,7 @@ router.post('/create', async(req,res,next)=>{
     try{
 
     if(!id){
-        try{
-        const clientCreated = await Client.create()
-            console.log('client created?', clientCreated)
-        id = clientCreated.id
-        } catch(e){
-            next(e)
-        }
+     res.status(400).send('no client found')
     }
 
     console.log('id is ', id);
@@ -180,15 +200,6 @@ router.delete('/all/:id', async(req,res,next)=>{
 
 })
 
-router.get('/anonymous/create/', async(req,res,next)=>{
-    // creates anonymous basket for client that isnt logged in
-    try{
-        newBasket = await Baskets.create();
 
-        res.status(200).send(newBasket)
-    } catch(e){
-        next(e)
-    }
-})
 
 module.exports = router;
