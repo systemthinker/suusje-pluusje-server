@@ -1,9 +1,6 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "secret",
-    "database": "suusje-pluusje",
-    "host": "localhost",
+    "url": "postgres://wbmilfzl:PHpbcH9py0XA60f_UgTXfy5pFbXS5lVc@kandula.db.elephantsql.com:5432/wbmilfzl",
     "dialect": "postgres",
     "operatorsAliases": "0"
   },

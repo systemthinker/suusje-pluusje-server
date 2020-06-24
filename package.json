@@ -11,7 +11,6 @@
     "seed": "npx sequelize-cli db:seed:all",
     "resetDB": "npx sequelize-cli db:migrate:undo:all && npm run initdev",
     "test": "echo \"Error: no test specified\" && exit 1"
-   
   },
   "keywords": [
     "template",
