@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
   product.associate = function(models) {
-    product.belongsToMany(models.basket, { through: 'basketProducts'});
+    product.belongsToMany(models.basket, { through: 'basketProducts',
+                                                    unique: false});
     product.belongsToMany(models.order, { through: 'orderProducts'});
     
    

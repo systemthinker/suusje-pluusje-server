@@ -1,8 +1,10 @@
+const { Op } = require('sequelize')
 const { Router } = require("express");
 const Baskets = require('../models').basket 
 const Products = require('../models').product 
 const Client = require('../models').client
 const BasketProducts = require('../models').basketProduct
+
 
 
 const router = new Router();
@@ -13,8 +15,30 @@ router.get('/:id', async(req,res,next)=>{
     const basket = await Baskets.findByPk(id,{
         include: [Products]
     })
+    const whatIsBasketProduct = await BasketProducts.findAll({
+        where: {
+            basketId: basket.id
+        }
+    })
+    
    
-    res.status(200).send(basket);
+    const fullCart = whatIsBasketProduct.reduce((acc, p) => {
+        const pInAcc = acc.find(cp => cp.productId === p.productId)
+        if (!pInAcc) {
+        return [...acc, { productId: p.productId, quantity: 1 }]
+        } else {
+          const newAcc = acc.map(cp => cp.productId === p.productId ? { ...cp, quantity: cp.quantity + 1 } : cp)
+          return newAcc
+        }
+      }
+      , [])
+    
+    
+    const productIds = fullCart.map(p => p.productId)
+    const products = await Products.findAll({ where: { id: { [Op.in]: productIds } }})
+    const fullCartWithPrice = fullCart.map(cp => ({ ...cp, ...products.find(p => p.id === cp.productId).dataValues }))
+    
+    res.status(200).send(fullCartWithPrice)
     } catch(e){
         next(e)
     }
@@ -31,7 +55,30 @@ router.get('/client/:id', async(req,res,next)=>{
         include: [Products]
     })
    
-    res.status(200).send(basket);
+    const whatIsBasketProduct = await BasketProducts.findAll({
+        where: {
+            basketId: basket.id
+        }
+    })
+    
+   
+    const fullCart = whatIsBasketProduct.reduce((acc, p) => {
+        const pInAcc = acc.find(cp => cp.productId === p.productId)
+        if (!pInAcc) {
+        return [...acc, { productId: p.productId, quantity: 1 }]
+        } else {
+          const newAcc = acc.map(cp => cp.productId === p.productId ? { ...cp, quantity: cp.quantity + 1 } : cp)
+          return newAcc
+        }
+      }
+      , [])
+    
+    
+    const productIds = fullCart.map(p => p.productId)
+    const products = await Products.findAll({ where: { id: { [Op.in]: productIds } }})
+    const fullCartWithPrice = fullCart.map(cp => ({ ...cp, ...products.find(p => p.id === cp.productId).dataValues }))
+    
+    res.status(200).send(fullCartWithPrice)
     } catch(e){
         next(e)
     }
@@ -78,16 +125,43 @@ router.patch('/:id', async(req,res,next)=>{
     const basket = await Baskets.findByPk(basketFound.id,{
         include: [Products]
     })
- 
-    res.status(200).send(basket);
+
+   
+
+    const whatIsBasketProduct = await BasketProducts.findAll({
+        where: {
+            basketId: basketFound.id
+        }
+    })
+    
+   
+    const fullCart = whatIsBasketProduct.reduce((acc, p) => {
+        const pInAcc = acc.find(cp => cp.productId === p.productId)
+        if (!pInAcc) {
+        return [...acc, { productId: p.productId, quantity: 1 }]
+        } else {
+          const newAcc = acc.map(cp => cp.productId === p.productId ? { ...cp, quantity: cp.quantity + 1 } : cp)
+          return newAcc
+        }
+      }
+      , [])
+    
+    
+    const productIds = fullCart.map(p => p.productId)
+    const products = await Products.findAll({ where: { id: { [Op.in]: productIds } }})
+    const fullCartWithPrice = fullCart.map(cp => ({ ...cp, ...products.find(p => p.id === cp.productId).dataValues }))
+
+  
+    res.status(200).send(fullCartWithPrice);
     } catch(e){
         next(e)
     }
 
 })
 
-router.delete('/:id', async(req,res,next)=>{
+router.put('/:id', async(req,res,next)=>{
     // removes product from basket
+    console.log('product id',req.body.productId)
 
     try{
         const id = req.params.id
@@ -95,7 +169,11 @@ router.delete('/:id', async(req,res,next)=>{
             res.status(400).send('no basket found')
         }
     
-        const basketFound = await Baskets.findByPk(id)
+        const basketFound = await Baskets.findOne({
+            where: {
+                clientId : id
+            }
+        })
         
         if(!basketFound) {
             res.status(400).send('no basket found')
@@ -117,11 +195,32 @@ router.delete('/:id', async(req,res,next)=>{
         limit: 1},
             )
 
-        const newBasket = await Baskets.findByPk(id,{
-            include: [Products]
+        
+
+        const whatIsBasketProduct = await BasketProducts.findAll({
+            where: {
+                basketId: basketFound.id
+            }
         })
         
-        res.status(200).send(newBasket)
+       
+        const fullCart = whatIsBasketProduct.reduce((acc, p) => {
+            const pInAcc = acc.find(cp => cp.productId === p.productId)
+            if (!pInAcc) {
+            return [...acc, { productId: p.productId, quantity: 1 }]
+            } else {
+              const newAcc = acc.map(cp => cp.productId === p.productId ? { ...cp, quantity: cp.quantity + 1 } : cp)
+              return newAcc
+            }
+          }
+          , [])
+        
+        
+        const productIds = fullCart.map(p => p.productId)
+        const products = await Products.findAll({ where: { id: { [Op.in]: productIds } }})
+        const fullCartWithPrice = fullCart.map(cp => ({ ...cp, ...products.find(p => p.id === cp.productId).dataValues }))
+        
+        res.status(200).send(fullCartWithPrice)
 
     } catch(e){
         next(e)
