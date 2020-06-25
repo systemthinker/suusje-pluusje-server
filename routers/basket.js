@@ -262,7 +262,32 @@ router.post('/create', async(req,res,next)=>{
     res.status(200).send(basketCreated)
     }
 
-    res.status(200).send(basket)
+    const whatIsBasketProduct = await BasketProducts.findAll({
+        where: {
+            basketId: basket.id
+        }
+    })
+    
+   
+    const fullCart = whatIsBasketProduct.reduce((acc, p) => {
+        const pInAcc = acc.find(cp => cp.productId === p.productId)
+        if (!pInAcc) {
+        return [...acc, { productId: p.productId, quantity: 1 }]
+        } else {
+          const newAcc = acc.map(cp => cp.productId === p.productId ? { ...cp, quantity: cp.quantity + 1 } : cp)
+          return newAcc
+        }
+      }
+      , [])
+    
+    
+    const productIds = fullCart.map(p => p.productId)
+    const products = await Products.findAll({ where: { id: { [Op.in]: productIds } }})
+    const fullCartWithPrice = fullCart.map(cp => ({ ...cp, ...products.find(p => p.id === cp.productId).dataValues }))
+    
+    res.status(200).send(fullCartWithPrice)
+
+    
     } catch(e){
     next(e)
     }

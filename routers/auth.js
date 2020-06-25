@@ -70,6 +70,43 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.patch("/order/signup", authMiddleware, async (req, res) => {
+  const { email, password, name, id } = req.body;
+  if (!email || !password || !name) {
+    return res.status(400).send("Please provide an email, password and a name");
+  }
+
+  if(!id){
+    return res.status(400).send('no client found')
+  }
+
+  try {
+    const client = await Client.findByPk(id)
+    console.log('clinet is',client)
+    if(!client){
+      return res.status(400).send('no client found')
+    }
+    client.name = name;
+    client.password = bcrypt.hashSync(password, SALT_ROUNDS)
+    client.isVerified = true
+    client.email = email
+   
+    await client.save()
+    console.log('client is', client)
+    delete client.dataValues["password"]; // don't send back the password hash
+
+   res.status(201).send(client);
+  } catch (error) {
+    if (error.name === "SequelizeUniqueConstraintError") {
+      return res
+        .status(400)
+        .send({ message: "There is an existing account with this email" });
+    }
+
+    return res.status(400).send({ message: "Something went wrong, sorry" });
+  }
+});
+
 router.get("/me", authMiddleware, async (req, res) => {
   // don't send back the password hash
   delete req.client.dataValues["password"];

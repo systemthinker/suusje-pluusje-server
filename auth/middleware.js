@@ -14,7 +14,7 @@ async function auth(req, res, next) {
 
   try {
     const data = toData(auth[1]);
-    const client = await Client.findByPk(data.clientId);
+    const client = await Client.findByPk(data.clientId || data.id);
     if (!client) {
       return res.status(404).send({ message: "Client does not exist" });
     }
