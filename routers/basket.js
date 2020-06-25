@@ -191,7 +191,8 @@ router.put('/:id', async(req,res,next)=>{
         }
 
         await BasketProducts.destroy(
-            {where: {productId},
+            {where: {productId,
+            basketId: basketFound.id},
         limit: 1},
             )
 
