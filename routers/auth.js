@@ -82,7 +82,7 @@ router.patch("/order/signup", authMiddleware, async (req, res) => {
 
   try {
     const client = await Client.findByPk(id)
-    console.log('clinet is',client)
+    
     if(!client){
       return res.status(400).send('no client found')
     }
