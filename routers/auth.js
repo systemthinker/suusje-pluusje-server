@@ -4,6 +4,7 @@ const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
 const Client = require("../models/").client;
 const Basket = require('../models').basket
+const Address = require('../models').adres;
 const { SALT_ROUNDS } = require("../config/constants");
 const basket = require("../models/basket");
 
@@ -81,7 +82,9 @@ router.patch("/order/signup", authMiddleware, async (req, res) => {
   }
 
   try {
-    const client = await Client.findByPk(id)
+    const client = await Client.findByPk(id,{
+      include : [Address]
+    })
     
     if(!client){
       return res.status(400).send('no client found')
