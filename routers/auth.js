@@ -40,7 +40,7 @@ router.post("/login", async (req, res, next) => {
 router.post("/signup", async (req, res) => {
   const { email, password, name } = req.body;
   if (!email || !password || !name) {
-    return res.status(400).send("Please provide an email, password and a name");
+    return res.status(400).send("Vul alstublieft een naam email en wachtwoord in");
   }
 
   try {
@@ -59,12 +59,12 @@ router.post("/signup", async (req, res) => {
 
     const token = toJWT({ clientId: newClient.id });
 
-    res.status(201).json({ token, ...newClient.dataValues });
+    res.status(201).json({ token, ...newClient.dataValues});
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
       return res
         .status(400)
-        .send({ message: "There is an existing account with this email" });
+        .send({ message: "Er bestaat al een account met dit emailadres" });
     }
 
     return res.status(400).send({ message: "Something went wrong, sorry" });
