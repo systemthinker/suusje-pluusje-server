@@ -116,4 +116,8 @@ router.get("/me", authMiddleware, async (req, res) => {
   res.status(200).send({ ...req.client.dataValues });
 });
 
+router.get('/', async(req,res)=>{
+  res.status(200).send('welcome!')
+})
+
 module.exports = router;
