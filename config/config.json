@@ -13,10 +13,7 @@
     "operatorsAliases": "0"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "url": "postgres://wbmilfzl:PHpbcH9py0XA60f_UgTXfy5pFbXS5lVc@kandula.db.elephantsql.com:5432/wbmilfzl",
     "dialect": "postgres",
     "operatorsAliases": "0"
   }
