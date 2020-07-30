@@ -26,12 +26,11 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          name: 'anon',
+          name: "anon",
           createdAt: new Date(),
           updatedAt: new Date(),
           isVerified: false,
-          
-        }
+        },
       ],
       {}
     );
