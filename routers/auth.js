@@ -42,7 +42,25 @@ router.post("/signup", async (req, res) => {
   if (!email || !password || !name) {
     return res
       .status(400)
-      .send("Vul alstublieft een naam email en wachtwoord in");
+      .send({ message: "Vul alstublieft een naam email en wachtwoord in" });
+  }
+  console.log(" password is", password);
+
+  if (name.length < 3) {
+    return res.status(400).send({
+      message: "Vul alstublieft uw naam in met minimaal 3 tekens",
+    });
+  }
+  if (
+    !password.match(/[a-z]/g) &&
+    !password.match(/[A-Z]/g) &&
+    !password.match(/[0-9]/g) &&
+    !password.length >= 8
+  ) {
+    return res.status(400).send({
+      message:
+        "Zorg dat uw wachtwoord minimaal 8 tekens bevat, minimaal 1 Hoofdletter en minimaal 1 kleine letter en minimaal 1 cijfer.",
+    });
   }
 
   try {
@@ -81,6 +99,12 @@ router.patch("/order/signup", authMiddleware, async (req, res) => {
 
   if (!id) {
     return res.status(400).send("no client found");
+  }
+
+  if (password.length < 3) {
+    return res
+      .status(400)
+      .send("Zorg dat uw wachtwoord minimaal 3 tekens bevat");
   }
 
   try {
