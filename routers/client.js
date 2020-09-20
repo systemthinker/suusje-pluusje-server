@@ -4,6 +4,7 @@ const Baskets = require("../models").basket;
 const BasketProducts = require("../models").basketProduct;
 const Products = require("../models").product;
 const { toJWT } = require("../auth/jwt");
+const authMiddleware = require("../auth/middleware");
 
 const router = new Router();
 
