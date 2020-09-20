@@ -14,7 +14,7 @@ const app = express();
 app.use(loggerMiddleWare("dev"));
 const bodyParserMiddleWare = express.json();
 app.use(bodyParserMiddleWare);
-app.use(corsMiddleWare());
+app.use(corsMiddleWare({ origin: true }));
 
 if (process.env.DELAY) {
   app.use((req, res, next) => {
