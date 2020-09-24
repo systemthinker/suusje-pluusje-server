@@ -82,7 +82,7 @@ router.patch("/signup", authMiddleware, async (req, res) => {
 });
 
 router.patch("/order", authMiddleware, async (req, res) => {
-  const { email, name, lastName, middleName, id } = req.body;
+  const { id, salutation, name, middleName, lastName, email } = req.body;
   if (!email || !name || !lastName) {
     return res.status(400).send("Please provide an email, and a name");
   }
@@ -109,6 +109,7 @@ router.patch("/order", authMiddleware, async (req, res) => {
     client.lastName = lastName;
     client.middleName = middleName;
     client.email = email;
+    client.salutation = salutation;
 
     await client.save();
     console.log("client is", client);
