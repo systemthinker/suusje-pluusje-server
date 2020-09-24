@@ -81,7 +81,7 @@ router.patch("/signup", authMiddleware, async (req, res) => {
   }
 });
 
-router.patch("/order", authMiddleware, async (req, res) => {
+router.post("/order", authMiddleware, async (req, res) => {
   const { id, salutation, name, middleName, lastName, email } = req.body;
   if (!email || !name || !lastName) {
     return res.status(400).send("Please provide an email, and a name");
