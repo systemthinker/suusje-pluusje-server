@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   client.associate = function (models) {
     client.hasOne(models.adres);
     client.hasOne(models.basket);
+    client.hasOne(models.addresbilling);
   };
   return client;
 };
