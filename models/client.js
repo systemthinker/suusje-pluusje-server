@@ -21,6 +21,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      middleName: {
+        type: DataTypes.STRING,
+      },
+      salutation: {
+        type: DataTypes.STRING,
+      },
     },
     {}
   );
