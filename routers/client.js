@@ -3,6 +3,7 @@ const Client = require("../models/").client;
 const Baskets = require("../models").basket;
 const BasketProducts = require("../models").basketProduct;
 const Products = require("../models").product;
+const Address = require("../models").adres;
 const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
 
@@ -46,12 +47,6 @@ router.patch("/signup", authMiddleware, async (req, res) => {
     return res.status(400).send("no client found");
   }
 
-  if (password.length < 3) {
-    return res
-      .status(400)
-      .send("Zorg dat uw wachtwoord minimaal 3 tekens bevat");
-  }
-
   try {
     const client = await Client.findByPk(id, {
       include: [Address],
@@ -91,16 +86,15 @@ router.post("/order", authMiddleware, async (req, res) => {
     return res.status(400).send("no client found");
   }
 
-  if (password.length < 3) {
-    return res
-      .status(400)
-      .send("Zorg dat uw wachtwoord minimaal 3 tekens bevat");
-  }
+  console.log("all checked till client");
 
   try {
     const client = await Client.findByPk(id, {
       include: [Address],
     });
+
+    console.log("client is", client);
+    console.log("id is", id);
 
     if (!client) {
       return res.status(400).send("no client found");
