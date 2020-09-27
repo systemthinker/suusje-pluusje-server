@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const addressBilling = sequelize.define(
-    "addressBilling",
+  const addressbilling = sequelize.define(
+    "addressbilling",
 
     {
       clientId: {
@@ -31,8 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  addressBilling.associate = function (models) {
-    addressBilling.belongsTo(models.client, { foreignKey: "clientId" });
+  addressbilling.associate = function (models) {
+    addressbilling.belongsTo(models.client, { foreignKey: "clientId" });
   };
-  return addressBilling;
+  return addressbilling;
 };
