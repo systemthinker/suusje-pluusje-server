@@ -227,7 +227,7 @@ router.post("/billing", authMiddleware, async (req, res) => {
       addressBillingFind.clientId = clientId;
       addressBillingFind.postalCodeB = postalCodeBilling;
       addressBillingFind.houseNumber = houseNumberBilling;
-      addressBillingFind.cityB = cityNameFromApiBilling;
+      addressBillingFind.city = cityNameFromApiBilling;
       addressBillingFind.streetName = streetNameFromApiBilling;
       addressBillingFind.houseNumberAddition =
         houseNumberAdditionBilling || null;
