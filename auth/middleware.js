@@ -1,4 +1,6 @@
 const Client = require("../models").client;
+const Address = require("../models").adres;
+const AdressBilling = require("../models").addressbilling;
 const { toData } = require("./jwt");
 
 async function auth(req, res, next) {
@@ -14,7 +16,9 @@ async function auth(req, res, next) {
 
   try {
     const data = toData(auth[1]);
-    const client = await Client.findByPk(data.clientId || data.id);
+    const client = await Client.findByPk(data.clientId || data.id, {
+      include: [Address, AdressBilling],
+    });
     if (!client) {
       return res.status(404).send({ message: "Client does not exist" });
     }
