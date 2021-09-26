@@ -16,7 +16,7 @@ const bodyParserMiddleWare = express.json();
 app.use(bodyParserMiddleWare);
 app.use(
   corsMiddleWare({
-    origin: 'https://www.suusjepluusje.nl',
+    origin: 'https://www.suusjepluusje.nl/*',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
   })
